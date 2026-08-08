@@ -2374,62 +2374,48 @@ html, body {
     height: 260px !important;
   }
 
+  .recent-event-card-overlay {
+    padding: 14px 12px !important;
+    background: linear-gradient(to top, rgba(7,7,9,0.96) 0%, rgba(7,7,9,0.6) 75%, transparent 100%) !important;
+  }
+
+  .recent-event-card-title {
+    font-size: 1.05rem !important;
+    line-height: 1.2 !important;
+    margin-top: 4px !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .recent-event-card-overlay .sublabel-gold,
+  .event-card-overlay .sublabel-gold {
+    font-size: 0.58rem !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.15 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .gallery-overlay {
+    padding: 14px 10px !important;
+  }
+
+  .gallery-caption {
+    font-size: 1.0rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .gallery-category-tag {
+    font-size: 0.62rem !important;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
-  /* Compact Event Packages Mobile Layout - Showing Both Side-by-Side */
-  .packages-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    margin-top: 20px !important;
-  }
-
-  .package-card {
-    padding: 16px 10px !important;
-    border-radius: var(--radius-sm) !important;
-  }
-
-  .package-header {
-    margin-bottom: 10px !important;
-  }
-
-  .package-header .sublabel-gold {
-    font-size: 0.62rem !important;
-    letter-spacing: 0.1em !important;
-  }
-
-  .package-title {
-    font-size: 0.95rem !important;
-    line-height: 1.15 !important;
-    margin-bottom: 4px !important;
-  }
-
-  .package-feature-list {
-    gap: 6px !important;
-    margin-bottom: 14px !important;
-  }
-
-  .package-feature-item {
-    font-size: 0.7rem !important;
-    gap: 4px !important;
-    line-height: 1.2 !important;
-  }
-
-  .package-check-icon {
-    font-size: 0.72rem !important;
-  }
-
-  .package-card .btn-gold-primary,
-  .package-card .btn-outline-luxury {
-    padding: 8px 6px !important;
-    font-size: 0.62rem !important;
-    letter-spacing: 0.02em !important;
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    border-radius: 16px !important;
+  /* Hide Event Packages on Mobile View */
+  .packages-section {
+    display: none !important;
   }
 
   /* Form & Footer Mobile */
@@ -2590,15 +2576,56 @@ html, body {
   }
 
   .event-card {
-    min-width: 190px !important;
-    width: 190px !important;
+    min-width: 180px !important;
+    width: 180px !important;
     height: 250px !important;
   }
 
+  .event-card-overlay {
+    padding: 12px 10px !important;
+  }
+
+  .event-card-title {
+    font-size: 0.95rem !important;
+    line-height: 1.18 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
   .recent-event-card {
-    min-width: 170px !important;
-    width: 170px !important;
-    height: 230px !important;
+    min-width: 175px !important;
+    width: 175px !important;
+    height: 245px !important;
+  }
+
+  .recent-event-card-overlay {
+    padding: 12px 10px !important;
+  }
+
+  .recent-event-card-title {
+    font-size: 0.92rem !important;
+    line-height: 1.18 !important;
+    margin-top: 3px !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .recent-event-card-overlay .sublabel-gold,
+  .event-card-overlay .sublabel-gold {
+    font-size: 0.55rem !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .gallery-caption {
+    font-size: 0.88rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .event-modal-title {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
   }
 
   .stats-number {
