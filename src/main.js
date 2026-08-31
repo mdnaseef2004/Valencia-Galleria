@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const particles = [];
-    const particleCount = 45;
+    const particleCount = window.innerWidth < 768 ? 16 : 40;
 
     class Particle {
       constructor() {
@@ -82,8 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
+        if (width > 768) {
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
+        }
         ctx.fill();
         ctx.restore();
       }
@@ -634,6 +636,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    const dateInput = document.getElementById('enquiry-date');
+    const datePlaceholder = document.getElementById('date-placeholder');
+    if (dateInput && datePlaceholder) {
+      const checkDateValue = () => {
+        if (dateInput.value) {
+          datePlaceholder.style.opacity = '0';
+        } else {
+          datePlaceholder.style.opacity = '1';
+        }
+      };
+      dateInput.addEventListener('change', checkDateValue);
+      dateInput.addEventListener('input', checkDateValue);
+      dateInput.addEventListener('focus', () => { datePlaceholder.style.opacity = '0'; });
+      dateInput.addEventListener('blur', checkDateValue);
+      checkDateValue();
+    }
+
     if (enquiryForm) {
       enquiryForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -833,6 +852,19 @@ document.addEventListener('DOMContentLoaded', () => {
         "Andalisia/vip2.jpg",
         "Andalisia/vip3.jpg"
       ]
+    },
+    rahulgandhi: {
+      title: "Shri Rahul Gandhi's Official Visit to Valencia Galleria",
+      tag: "VVIP DIGNITARY VISIT ALBUM",
+      photos: [
+        "rahull ghandhi/rahul ghandh stage.jpeg",
+        "rahull ghandhi/rahul ghandh stage 2.jpeg",
+        "rahull ghandhi/rahul ghandh walking.jpeg",
+        "rahull ghandhi/rahul ghandhi hall.jpeg",
+        "rahull ghandhi/rahul ghandh sign.jpeg",
+        "rahull ghandhi/rahul ghandh program.jpeg",
+        "rahull ghandhi/rahul ghandh invite.jpeg"
+      ]
     }
   };
 
@@ -913,7 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderModalPhoto();
     }
 
-    document.querySelectorAll('.recent-event-card, .event-card').forEach((card) => {
+    document.querySelectorAll('.recent-event-card, .event-card, .rahul-marquee-card, .vvip-photo-card').forEach((card) => {
       card.addEventListener('click', () => {
         const albumKey = card.getAttribute('data-album');
         if (albumKey) openAlbum(albumKey);
@@ -938,6 +970,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openAndaluciaBtn) {
       openAndaluciaBtn.addEventListener('click', () => {
         openAlbum('andalucia');
+      });
+    }
+
+    const openRahulGandhiBtn = document.getElementById('open-rahulgandhi-gallery');
+    if (openRahulGandhiBtn) {
+      openRahulGandhiBtn.addEventListener('click', () => {
+        openAlbum('rahulgandhi');
       });
     }
 
@@ -1065,11 +1104,79 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   }
 
+  function initAlhambraSlider() {
+    const slides = document.querySelectorAll('.alhambra-slide');
+    const prevBtn = document.getElementById('alhambra-prev');
+    const nextBtn = document.getElementById('alhambra-next');
+    if (!slides.length) return;
+
+    let currentSlide = 0;
+    let timer = null;
+
+    function goToSlide(idx) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (idx + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    function next() { goToSlide(currentSlide + 1); }
+    function prev() { goToSlide(currentSlide - 1); }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(next, 4000);
+    }
+
+    function stopAuto() {
+      if (timer) clearInterval(timer);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
+
+    startAuto();
+  }
+
+  function initAndaluciaSlider() {
+    const slides = document.querySelectorAll('.andalucia-slide');
+    const prevBtn = document.getElementById('andalucia-prev');
+    const nextBtn = document.getElementById('andalucia-next');
+    if (!slides.length) return;
+
+    let currentSlide = 0;
+    let timer = null;
+
+    function goToSlide(idx) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (idx + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    function next() { goToSlide(currentSlide + 1); }
+    function prev() { goToSlide(currentSlide - 1); }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(next, 4200);
+    }
+
+    function stopAuto() {
+      if (timer) clearInterval(timer);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
+
+    startAuto();
+  }
+
   // Run modules
   initGoldParticles();
   initGSAPAnimations();
   initGalleryAndLightbox();
   initFirstImpressionSlideshow();
+  initAlhambraSlider();
+  initAndaluciaSlider();
   initCordobaSlider();
   initEventsCarousel();
   initRecentEventsCarousel();
